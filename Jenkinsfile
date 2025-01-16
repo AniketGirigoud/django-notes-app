@@ -4,20 +4,23 @@ pipeline{
         stage("clone the code"){
             steps{
                 sh "whoami"
-                git url: "https://github.com/AniketGirigoud/django-notes-app.git", branch:"main"
+                script{
+                    clone("https://github.com/AniketGirigoud/jenkins-shared-library/tree/main/vars" , "main")
+                }
             }
         }
         stage("build stage"){
             steps{
-                sh "docker build -t django-app:latest ."
+                script{
+                    build( aniketgirigoud/django-apps:latest)
+                }
             }
         }
         stage("docker push"){
             steps{
-                withCredentials([usernamePassword(credentialsId:"dockerhubcred", usernameVariable:"dockerhubuser", passwordVariable:"dockerhubpass")]){
-                sh "docker login -u ${env.dockerhubuser} -p ${env.dockerhubpass}"
-                sh "docker image tag django-app ${env.dockerhubuser}/django-app:latest"
-                sh "docker push ${env.dockerhubuser}/django-app:latest"
+               script{
+                   push(aniketgirigoud/django-apps:latest)
+               }
                 }
             }
         }

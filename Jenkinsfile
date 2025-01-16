@@ -1,3 +1,4 @@
+@Library("aniket") 
 pipeline{
     agent {label 'aniket'}
     stages{

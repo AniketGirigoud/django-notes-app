@@ -27,12 +27,16 @@ pipeline{
         }
         stage("deoloy the code"){
             steps{
-                sh "docker-compose down && docker-compose up -d --build"
+                script{
+                    compose()
+                }
             }
         }
         stage("wel done"){
             steps{
-                echo  "running successfully"
+                script{
+                    hello()
+                }
             }
         }
     }

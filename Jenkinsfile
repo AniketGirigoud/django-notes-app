@@ -12,14 +12,14 @@ pipeline{
         stage("build stage"){
             steps{
                 script{
-                    build( aniketgirigoud/django-apps:latest)
+                    build( "django-apps", "latest")
                 }
             }
         }
         stage("docker push"){
             steps{
                script{
-                   push(aniketgirigoud/django-apps:latest)
+                   push("dockerhubcred","aniketgirigoud", "django-apps","latest")
                }
                 }
             }

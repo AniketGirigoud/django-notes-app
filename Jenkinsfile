@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage("clone the code"){
             steps{
-                clone("https://github.com/AniketGirigoud/jenkins-shared-library/tree/main/vars", "main")
+                clone("https://github.com/AniketGirigoud/django-notes-app.git", "main")
             }
         }
         stage("build stage"){

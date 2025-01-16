@@ -5,7 +5,7 @@ pipeline{
         stage("clone the code"){
             steps{
                 sh "whoami"
-                    clone("https://github.com/AniketGirigoud/jenkins-shared-library/tree/main/vars" , "main")
+                clone("https://github.com/AniketGirigoud/jenkins-shared-library/tree/main/vars" , "main")
             }
         }
         stage("build stage"){

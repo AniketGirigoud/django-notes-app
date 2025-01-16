@@ -1,21 +1,21 @@
-@Library("aniket")_
+@Library('aniket') _
 pipeline{
     agent {label 'aniket'}
     stages{
         stage("clone the code"){
             steps{
                 sh "whoami"
-                clone("https://github.com/AniketGirigoud/jenkins-shared-library/tree/main/vars" , "main")
+                clone("https://github.com/AniketGirigoud/jenkins-shared-library/tree/main/vars", "main")
             }
         }
         stage("build stage"){
             steps{
-                 dockerbuild( "django-apps", "latest")
+                 dockerbuild("django-apps", "latest")
             }
         }
         stage("docker push"){
             steps{
-                   push("dockerhubcred","aniketgirigoud", "django-apps","latest")
+                   push("dockerhubcred", "aniketgirigoud", "django-apps", "latest")
            }
         }
         stage("deoloy the code"){

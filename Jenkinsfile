@@ -10,7 +10,7 @@ pipeline{
         }
         stage("build stage"){
             steps{
-                 build( "django-apps", "latest")
+                 dockerbuild( "django-apps", "latest")
             }
         }
         stage("docker push"){
